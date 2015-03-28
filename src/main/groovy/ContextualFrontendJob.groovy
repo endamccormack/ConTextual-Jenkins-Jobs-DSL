@@ -12,7 +12,7 @@ class ContextualFrontend{
 
   def build(dslFactory) {
 
-    def serviceCommandServerPidIfExists = "kill -9 \$(cat tmp/pids/server.pid)"
+    def serviceCommandServerPidIfExists = "[ -d 'tmp/pids/server.pid' ] && ps -ef | grep \$(cat tmp/pids/server.pid) | awk '{print \$2}' | xargs kill || echo 'process not exists'"
     def serviceCommandReloadGems = "/usr/local/bin/gem pristine --all"
     def serviceCommandInstallGems = "/usr/local/bin/bundler install"
     def serviceCommandRun = "BUILD_ID=dontKillMe /usr/local/bin/rails s -d"
