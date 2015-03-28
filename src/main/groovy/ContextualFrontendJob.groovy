@@ -11,7 +11,8 @@ class ContextualFrontend{
   def github = 'https://github.com'
 
   def build(dslFactory) {
-    def serviceCommandServerPidIfExists = "rm -f /var/lib/jenkins/workspace/frontend/tmp/pids/server.pid."
+
+    def serviceCommandServerPidIfExists = "kill -9 \$(cat tmp/pids/server.pid)"
     def serviceCommandReloadGems = "/usr/local/bin/gem pristine --all"
     def serviceCommandInstallGems = "/usr/local/bin/bundler install"
     def serviceCommandRun = "BUILD_ID=dontKillMe /usr/local/bin/rails s -d"
