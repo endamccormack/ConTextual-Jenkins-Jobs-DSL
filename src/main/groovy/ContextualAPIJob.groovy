@@ -11,7 +11,7 @@ class ContextualAPI{
   def github = 'https://github.com'
 
   def build(dslFactory) {
-    def serviceCommandRemoveIvyLock = "rm -f /opt/play-2.2.2/framework/sbt/boot/sbt.boot.lock /opt/play-2.2.2/repository/.sbt.ivy.lock"
+    def serviceCommandRemoveSBTLock = "rm -f /opt/play-2.2.2/framework/sbt/boot/sbt.boot.lock /opt/play-2.2.2/repository/.sbt.ivy.lock"
     def serviceCommandCompile = "/usr/bin/play clean compile stage"
     def serviceCommandRun = "BUILD_ID=dontKillMe target/universal/stage/bin/contextualapi &"
 
@@ -26,7 +26,7 @@ class ContextualAPI{
         scm "* * * * *"
       }
       steps {
-        shell(serviceCommandRemoveIvyLock)
+        shell(serviceCommandRemoveSBTLock)
         shell(serviceCommandCompile)
         shell(serviceCommandRun)
       }
