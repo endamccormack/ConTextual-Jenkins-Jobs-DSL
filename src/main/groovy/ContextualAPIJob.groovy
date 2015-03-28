@@ -12,7 +12,7 @@ class ContextualAPI{
 
   def build(dslFactory) {
     def serviceCommandRemoveSBTLock = "rm -f /opt/play-2.2.2/framework/sbt/boot/sbt.boot.lock /opt/play-2.2.2/repository/.sbt.ivy.lock"
-    def serviceCommandCompile = "/usr/bin/play clean compile stage"
+    def serviceCommandCompile = "/opt/play-2.2.2/play clean compile stage"
     def serviceCommandRun = "BUILD_ID=dontKillMe target/universal/stage/bin/contextualapi &"
 
     dslFactory.job {
